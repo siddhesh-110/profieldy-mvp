@@ -1,0 +1,21 @@
+import { CalendarDays, Heart, MessageCircle, MoreHorizontal, Users } from 'lucide-react'
+import AppShell from '../components/layout/AppShell'
+import { roleNavigation } from '../app/navigation'
+import Avatar from '../components/ui/Avatar'
+import Badge from '../components/ui/Badge'
+import Button from '../components/ui/Button'
+import Card from '../components/ui/Card'
+import PageHeader from '../components/ui/PageHeader'
+
+const posts = [
+  { author: 'Northstar Academy', role: 'Academy office', time: '1 hour ago', type: 'Announcement', variant: 'info' as const, content: 'The August family fitness morning is confirmed for Sunday, 30 August. Coaches and families are welcome to join.', likes: 28, comments: 6 },
+  { author: 'Priya Shah', role: 'Academy owner', time: 'Yesterday', type: 'Staff update', variant: 'success' as const, content: 'Thank you to every coach who supported the inter-academy festival. The feedback from families has been excellent.', likes: 41, comments: 9 },
+  { author: 'Maya Rao', role: 'Football performance coach', time: '2 days ago', type: 'Training reminder', variant: 'warning' as const, content: 'The next term focus across football groups is decision making under pressure. Please keep the shared coaching language consistent.', likes: 19, comments: 4 },
+  { author: 'Northstar Academy', role: 'Academy office', time: '5 days ago', type: 'Notice', variant: 'neutral' as const, content: 'The academy office will close at 2:00 PM on Friday for staff training. Regular sessions will continue as scheduled.', likes: 12, comments: 2 },
+]
+
+function AdminCommunityPage() {
+  return <AppShell navigationItems={roleNavigation.admin.items} topbarTitle="Admin / Owner"><PageHeader title="Community" description="Academy-wide announcements and community updates." action={<Button disabled aria-label="New post unavailable in prototype mode">New post</Button>} /><div className="mt-6 grid gap-6 xl:grid-cols-[1fr_0.34fr]"><main aria-label="Academy community feed" className="min-w-0 space-y-4">{posts.map((post) => <Card key={`${post.author}-${post.time}`}><div className="flex items-start gap-3"><Avatar name={post.author} size="md" /><div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><p className="text-sm font-semibold text-text-primary">{post.author}</p><Badge variant={post.variant}>{post.type}</Badge></div><p className="mt-1 text-xs text-text-secondary">{post.role} · {post.time}</p></div><button type="button" disabled aria-label={`More options for ${post.author}`} className="rounded-md p-1 text-text-muted disabled:cursor-default"><MoreHorizontal aria-hidden="true" className="size-5" /></button></div><p className="mt-5 text-sm leading-6 text-text-secondary">{post.content}</p><div className="mt-5 flex items-center gap-5 border-t border-border pt-4 text-xs text-text-secondary"><span className="inline-flex items-center gap-1.5"><Heart aria-hidden="true" className="size-4" /> {post.likes}</span><span className="inline-flex items-center gap-1.5"><MessageCircle aria-hidden="true" className="size-4" /> {post.comments} comments</span></div></Card>)}</main><aside className="space-y-4"><Card><div className="flex items-start gap-3"><Users aria-hidden="true" className="size-5 text-profieldy-blue" /><div><h2 className="font-semibold text-text-primary">Community pulse</h2><p className="mt-1 text-sm text-text-secondary">This week across Northstar</p></div></div><div className="mt-5 space-y-4"><div><p className="text-2xl font-bold text-profieldy-blue">286</p><p className="mt-1 text-xs text-text-secondary">community members</p></div><div className="border-t border-border pt-4"><p className="text-2xl font-bold text-profieldy-pink">14</p><p className="mt-1 text-xs text-text-secondary">updates this month</p></div></div></Card><Card className="bg-profieldy-blue-light"><div className="flex items-start gap-3"><CalendarDays aria-hidden="true" className="size-4 text-profieldy-blue" /><div><h2 className="font-semibold text-text-primary">Prototype note</h2><p className="mt-2 text-sm leading-6 text-text-secondary">Posting, reactions, comments, and moderation are unavailable in this preview.</p></div></div></Card></aside></div></AppShell>
+}
+
+export default AdminCommunityPage

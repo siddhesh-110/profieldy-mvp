@@ -1,0 +1,21 @@
+import { Bell, Building2, LockKeyhole, Save, ShieldCheck, Users } from 'lucide-react'
+import AppShell from '../components/layout/AppShell'
+import { roleNavigation } from '../app/navigation'
+import Badge from '../components/ui/Badge'
+import Button from '../components/ui/Button'
+import Card from '../components/ui/Card'
+import Input from '../components/ui/Input'
+import PageHeader from '../components/ui/PageHeader'
+import Select from '../components/ui/Select'
+
+const roleSummary = [
+  { role: 'Admin / Owner', access: 'Full academy overview and settings', count: 2 },
+  { role: 'Coach', access: 'Assigned students and training tools', count: 18 },
+  { role: 'Student / Parent', access: 'Personal progress and academy information', count: 248 },
+]
+
+function AdminSettingsPage() {
+  return <AppShell navigationItems={roleNavigation.admin.items} topbarTitle="Admin / Owner"><PageHeader title="Settings" description="Review academy preferences and access configuration." action={<Button disabled aria-label="Save settings unavailable in prototype mode"><Save aria-hidden="true" className="size-4" /> Save changes</Button>} /><div className="mt-6 grid gap-6 xl:grid-cols-[1fr_0.8fr]"><div className="space-y-6"><Card><div className="flex items-start gap-3"><Building2 aria-hidden="true" className="size-5 text-profieldy-blue" /><div><h2 className="font-semibold text-text-primary">Academy profile</h2><p className="mt-1 text-sm text-text-secondary">Public academy information</p></div></div><div className="mt-6 grid gap-4 sm:grid-cols-2"><Input disabled label="Academy name" name="academy-name" value="Northstar Academy" readOnly /><Input disabled label="Contact email" name="contact-email" value="hello@northstar.example" readOnly /><Input disabled label="Location" name="location" value="Bengaluru, Karnataka" readOnly /><Select disabled label="Academy type" name="academy-type" value="multi-sport" options={[{ label: 'Multi-sport performance academy', value: 'multi-sport' }, { label: 'Single-sport academy', value: 'single-sport' }]} /></div></Card><Card><div className="flex items-start gap-3"><Bell aria-hidden="true" className="size-5 text-profieldy-pink" /><div><h2 className="font-semibold text-text-primary">Notification preferences</h2><p className="mt-1 text-sm text-text-secondary">Current academy communication defaults</p></div></div><div className="mt-6 space-y-4"><div className="flex items-center justify-between gap-4 rounded-md bg-background p-4"><div><p className="text-sm font-semibold text-text-primary">Attendance alerts</p><p className="mt-1 text-xs text-text-secondary">Notify admins about low attendance batches</p></div><Badge variant="success">Enabled</Badge></div><div className="flex items-center justify-between gap-4 rounded-md bg-background p-4"><div><p className="text-sm font-semibold text-text-primary">Fee reminders</p><p className="mt-1 text-xs text-text-secondary">Send upcoming due date reminders</p></div><Badge variant="success">Enabled</Badge></div></div></Card></div><Card className="h-fit"><div className="flex items-start gap-3"><ShieldCheck aria-hidden="true" className="size-5 text-profieldy-blue" /><div><h2 className="font-semibold text-text-primary">Roles & permissions</h2><p className="mt-1 text-sm text-text-secondary">Access summary by role</p></div></div><div className="mt-6 space-y-4">{roleSummary.map((item) => <div key={item.role} className="border-b border-border pb-4 last:border-0 last:pb-0"><div className="flex items-center justify-between gap-3"><p className="text-sm font-semibold text-text-primary">{item.role}</p><span className="inline-flex items-center gap-1 text-xs text-text-secondary"><Users aria-hidden="true" className="size-3.5" /> {item.count}</span></div><p className="mt-1 text-xs leading-5 text-text-secondary">{item.access}</p></div>)}</div><div className="mt-6 flex items-center gap-2 border-t border-border pt-4 text-xs text-text-secondary"><LockKeyhole aria-hidden="true" className="size-4" /> Permission editing is unavailable in prototype mode.</div></Card></div><p className="mt-5 text-center text-xs text-text-secondary">Settings are shown as a read-only prototype preview. Changes are not saved.</p></AppShell>
+}
+
+export default AdminSettingsPage
