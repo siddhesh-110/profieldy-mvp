@@ -1,11 +1,6 @@
-import type { LucideIcon } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
-
-export interface NavigationItem {
-  label: string
-  href: string
-  icon?: LucideIcon
-}
+import type { NavigationItem } from '../../app/navigation'
+export type { NavigationItem } from '../../app/navigation'
 
 interface SidebarProps {
   items: NavigationItem[]
@@ -29,7 +24,7 @@ function Sidebar({ items, open = true, onClose, brand = 'PROFIELDY' }: SidebarPr
             const active = location.pathname === href || (href !== '/' && location.pathname.startsWith(`${href}/`))
             return (
               <Link key={href} to={href} onClick={onClose} className={`flex min-h-10 items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-profieldy-blue ${active ? 'bg-profieldy-blue-light text-profieldy-blue' : 'text-text-secondary hover:bg-background hover:text-text-primary'}`} aria-current={active ? 'page' : undefined}>
-                {Icon && <Icon aria-hidden="true" className="size-4" />}
+                <Icon aria-hidden="true" className="size-4" />
                 {label}
               </Link>
             )
