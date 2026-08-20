@@ -10,6 +10,8 @@ import LoginPage from '../pages/LoginPage'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
 import UnauthorizedPage from '../pages/UnauthorizedPage'
+import StudentProfilePage from '../pages/StudentProfilePage'
+import StudentPerformancePage from '../pages/StudentPerformancePage'
 
 const roleRoutes: Array<{ role: UserRole; basePath: string }> = [
   { role: 'student', basePath: '/student' },
@@ -27,6 +29,8 @@ export function AppRouter() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/student" element={<StudentDashboardPage />} />
+        <Route path="/student/profile" element={<StudentProfilePage />} />
+        <Route path="/student/performance" element={<StudentPerformancePage />} />
         <Route path="/coach" element={<CoachDashboardPage />} />
         <Route path="/admin" element={<AdminDashboardPage />} />
         {roleRoutes.flatMap(({ role }) =>
