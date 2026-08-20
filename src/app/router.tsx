@@ -26,6 +26,9 @@ import CoachCommunityPage from '../pages/CoachCommunityPage'
 import AdminAcademyPage from '../pages/AdminAcademyPage'
 import AdminStudentsPage from '../pages/AdminStudentsPage'
 import AdminCoachesPage from '../pages/AdminCoachesPage'
+import AdminAttendancePage from '../pages/AdminAttendancePage'
+import AdminPerformancePage from '../pages/AdminPerformancePage'
+import AdminReportsPage from '../pages/AdminReportsPage'
 
 const roleRoutes: Array<{ role: UserRole; basePath: string }> = [
   { role: 'student', basePath: '/student' },
@@ -61,6 +64,9 @@ export function AppRouter() {
         <Route path="/admin/academy" element={<AdminAcademyPage />} />
         <Route path="/admin/students" element={<AdminStudentsPage />} />
         <Route path="/admin/coaches" element={<AdminCoachesPage />} />
+        <Route path="/admin/attendance" element={<AdminAttendancePage />} />
+        <Route path="/admin/performance" element={<AdminPerformancePage />} />
+        <Route path="/admin/reports" element={<AdminReportsPage />} />
         {roleRoutes.flatMap(({ role }) =>
           roleNavigation[role].items.slice(1).map((item) => (
             <Route key={item.href} path={item.href} element={<RoleRoutePage role={role} sectionTitle={item.label} />} />
